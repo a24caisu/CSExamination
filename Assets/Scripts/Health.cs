@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.Serialization;
+using Image = UnityEngine.UI.Image;
 
 // This component can be used together with the UnityEventOnTrigger-component to make a character in your game have health
 // If you don't know how to use UnityEvents, watch this video first: https://play.his.se/media/UnityEvents/0_nq9m8qin
@@ -16,7 +19,7 @@ public class Health : MonoBehaviour
     [SerializeField] float maxHealth = 10f;
     [Tooltip("Minimum amount of health")]
     [SerializeField] float minHealth = 0f;
-
+    
     [Tooltip("Will not take damage when invincible")]
     [SerializeField] bool invincible;
 
@@ -35,8 +38,13 @@ public class Health : MonoBehaviour
     [SerializeField] UnityEvent OnHealed;
     [Tooltip("Event triggered when this object dies (health is zero)")]
     [SerializeField] UnityEvent OnDie;
-
-    
+        
+    //slarvig egen kod
+    [SerializeField]  private GameObject Player;
+    [SerializeField] private Vector3 pos;
+    [SerializeField] private Image heart1;
+    [SerializeField] private Image heart2;
+   
 
     // Awake is called before the first frame update
     void Awake()
@@ -60,6 +68,15 @@ public class Health : MonoBehaviour
                 invulnerabilityTimer = safeTime;
                 OnExitSafeTime?.Invoke();
             }
+        }
+
+        if (currentHealth == 2)
+        {
+            heart1.gameObject.SetActive(false);
+        }
+        if (currentHealth == 1)
+        {
+            heart2.gameObject.SetActive(false);
         }
     }
 
@@ -114,6 +131,11 @@ public class Health : MonoBehaviour
             OnDie?.Invoke();
             //Add animation-trigger here
         }
+    }
+
+    public void Respawn()
+    {
+        Player.transform.position = pos;
     }
 }
 
