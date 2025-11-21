@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Settings/Scenes/2D URP Scene Template.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/ViolentEnding.unity
+    guid: 9cbe700acb2520a4c8a271980253b0c1
+  - enabled: 1
+    path: Assets/Scenes/PeacefulEnding.unity
+    guid: a1b286035f4974749844736838197fd5
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

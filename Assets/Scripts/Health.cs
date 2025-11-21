@@ -57,12 +57,13 @@ public class Health : MonoBehaviour
     private void Update()
     {
         // If the isHurt-variable is set to "true", start counting down time from the set "safeTime"
-        
+
         if (isHurt == true)
         {
             invulnerabilityTimer -= Time.deltaTime;
-            
+
             // Trigger the UnityEvent "OnExitSafeTime" when timer reached 0 or lower. Reset variables.
+
             if (invulnerabilityTimer <= 0f)
             {
                 isHurt = false;
@@ -71,19 +72,24 @@ public class Health : MonoBehaviour
             }
         }
 
-        if (currentHealth == 2)
+        if (maxHealth == 3)
         {
-            heart1.gameObject.SetActive(false);
-        }
-        if (currentHealth == 1)
-        {
-            heart2.gameObject.SetActive(false);
+            if (currentHealth == 2)
+            {
+                heart1.gameObject.SetActive(false);
+            }
+
+            if (currentHealth == 1)
+            {
+                heart2.gameObject.SetActive(false);
+            }
+
+            if (currentHealth == minHealth)
+            {
+                SceneManager.LoadScene("TitleScene", LoadSceneMode.Single);
+            }
         }
 
-        if (currentHealth == minHealth)
-        {
-            SceneManager.LoadScene("TitleScene", LoadSceneMode.Single);
-        }
     }
 
     public void Heal(float healAmount)
