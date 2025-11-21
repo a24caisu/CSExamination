@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
+using UnityEngine.SceneManagement;
 
 // This component can be used together with the UnityEventOnTrigger-component to make a character in your game have health
 // If you don't know how to use UnityEvents, watch this video first: https://play.his.se/media/UnityEvents/0_nq9m8qin
@@ -77,6 +78,11 @@ public class Health : MonoBehaviour
         if (currentHealth == 1)
         {
             heart2.gameObject.SetActive(false);
+        }
+
+        if (currentHealth == minHealth)
+        {
+            SceneManager.LoadScene("TitleScene", LoadSceneMode.Single);
         }
     }
 
